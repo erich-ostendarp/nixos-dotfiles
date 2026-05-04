@@ -18,9 +18,12 @@
  
   programs.git = {
     enable = true;
-    settings.user = {
-      name = "eostendarp";
-      email = "eostendarp@gmail.com";
+    settings = {
+      init.defaultBranch = "main";
+      user = {
+        name = "eostendarp";
+        email = "eostendarp@gmail.com";
+      };
     };
   };
 
