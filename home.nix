@@ -19,11 +19,20 @@
   programs.git = {
     enable = true;
     settings = {
-      init.defaultBranch = "main";
       user = {
         name = "eostendarp";
         email = "eostendarp@gmail.com";
       };
+      init.defaultBranch = "main";
+      push.autoSetupRemote = true;
+      diff = {
+        algorithm = "histogram";
+        colorMoved = "zebra";
+      };
+      branch.sort = "-committerdate";
+      tag.sort = "taggerdate";
+      commit.verbose = true;
+      merge.conflictstyle = "zdiff3";
     };
   };
 
