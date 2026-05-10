@@ -1,6 +1,7 @@
 { pkgs, inputs, ... }: {
   wsl.enable = true;
   wsl.defaultUser = "eostendarp";
+  wsl.docker-desktop.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = true;
