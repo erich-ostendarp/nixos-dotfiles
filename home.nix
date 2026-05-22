@@ -3,8 +3,7 @@
 
   imports = [ inputs.lazyvim.homeManagerModules.default ];
 
-  home.packages = with pkgs; [
-  ];
+  home.packages = with pkgs; [];
 
   programs.direnv = {
     enable = true;
@@ -56,7 +55,16 @@
       };
     };
 
+    config = {};
+
     plugins = {
+      direnv = ''
+        return {
+          "NotAShelf/direnv.nvim",
+          opts = {},
+        }
+      '';
+
       noice = ''
         return {
           "folke/noice.nvim",
