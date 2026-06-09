@@ -14,9 +14,6 @@
   users.users.eostendarp.extraGroups = [ "wheel" ];
   system.stateVersion = "26.05";
 
-  # TODO: remove w/ update to NixOS-WSL release-26.05
-  networking.resolvconf.enable = false;
-
   environment.systemPackages = with pkgs; [
   ];
 
