@@ -18,20 +18,22 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-wsl, home-manager, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
+  outputs = {
+    nixpkgs,
+    nixos-wsl,
+    home-manager,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+  in {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
-        system = system;
-        specialArgs = { inherit inputs; }; 
+        inherit system;
+        specialArgs = {inherit inputs;};
         modules = [
           ./config.nix
           nixos-wsl.nixosModules.default
-	        home-manager.nixosModules.default
+          home-manager.nixosModules.default
         ];
       };
     };

@@ -1,9 +1,12 @@
-{ pkgs, inputs, ... }: {
+{inputs, ...}: {
   wsl.enable = true;
   wsl.defaultUser = "eostendarp";
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.auto-optimise-store = true;
+  nix.settings = {
+    experimental-features = ["nix-command" "flakes"];
+    auto-optimise-store = true;
+  };
+
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -11,11 +14,8 @@
   };
 
   security.sudo.wheelNeedsPassword = true;
-  users.users.eostendarp.extraGroups = [ "wheel" ];
+  users.users.eostendarp.extraGroups = ["wheel"];
   system.stateVersion = "26.05";
-
-  environment.systemPackages = with pkgs; [
-  ];
 
   programs.bash.promptInit = ''
     PROMPT_COLOR="1;32m"
@@ -23,8 +23,10 @@
     PS1="\[\033[$PROMPT_COLOR\][\u@\h:\w]\\$\[\033[0m\] \[\e]0;\u@\h: \w\007\]"
   '';
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.extraSpecialArgs = { inherit inputs; };
-  home-manager.users.eostendarp = import ./home.nix;
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = {inherit inputs;};
+    users.eostendarp = import ./home.nix;
+  };
 }
