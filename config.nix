@@ -1,6 +1,8 @@
 {inputs, ...}: {
-  wsl.enable = true;
-  wsl.defaultUser = "eostendarp";
+  wsl = {
+    enable = true;
+    defaultUser = "eostendarp";
+  };
 
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
