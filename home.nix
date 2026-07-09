@@ -18,6 +18,13 @@
       enable = true;
     };
 
+    ranger = {
+      enable = true;
+      settings = {
+        show_hidden = true;
+      };
+    };
+
     git = {
       enable = true;
       settings = {
@@ -43,9 +50,6 @@
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
-      extraConfig = ''
-        set shell=${pkgs.bashInteractive}/bin/bash
-      '';
     };
 
     lazyvim = {
@@ -64,18 +68,12 @@
         direnv = ''
           return {
             "NotAShelf/direnv.nvim",
-            opts = {},
-          }
-        '';
-
-        noice = ''
-          return {
-            "folke/noice.nvim",
-            opts = {
-              cmdline = { enabled = false },
-              messages = { enabled = false },
-              popupmenu = { enabled = false },
-            },
+            lazy = false,
+            config = function()
+              require("direnv").setup({
+                autoload_direnv = true,
+              })
+            end,
           }
         '';
 
