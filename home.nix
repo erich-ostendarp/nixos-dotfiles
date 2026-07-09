@@ -16,6 +16,36 @@
 
     bash = {
       enable = true;
+      initExtra = ''
+        function y() {
+          local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+          command yazi "$@" --cwd-file="$tmp"
+          IFS= read -r -d \'\' cwd < "$tmp"
+          [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+          command rm -f -- "$tmp"
+        }
+      '';
+    };
+
+    yazi = {
+      enable = true;
+      settings.mgr = {
+        show_hidden = true;
+      };
+      flavors = {
+        tokyo-night-moon = pkgs.runCommand "yazi-flavor-tokyonight-moon" {} ''
+          mkdir -p $out
+          cp -r ${pkgs.fetchFromGitHub {
+            owner = "erich-ostendarp";
+            repo = "yazi-flavors";
+            rev = "1889f8d1b9c49b562bd161bd9f502e92f4b76b9d";
+            hash = "sha256-vacu8vqSE32wDLoxCL7M61o78QbIAZhltdBAZb+K1mI=";
+          }}/tokyonight-moon.yazi/* $out/
+        '';
+      };
+      theme.flavor = {
+        dark = "tokyo-night-moon";
+      };
     };
 
     ranger = {
