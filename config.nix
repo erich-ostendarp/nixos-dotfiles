@@ -19,12 +19,6 @@
   users.users.eostendarp.extraGroups = ["wheel"];
   system.stateVersion = "26.05";
 
-  programs.bash.promptInit = ''
-    PROMPT_COLOR="1;32m"
-    ((UID)) || PROMPT_COLOR="1;31m"
-    PS1="\[\033[$PROMPT_COLOR\][\u@\h:\w]\\$\[\033[0m\] \[\e]0;\u@\h: \w\007\]"
-  '';
-
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
