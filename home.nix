@@ -48,13 +48,6 @@
       };
     };
 
-    ranger = {
-      enable = true;
-      settings = {
-        show_hidden = true;
-      };
-    };
-
     git = {
       enable = true;
       settings = {
