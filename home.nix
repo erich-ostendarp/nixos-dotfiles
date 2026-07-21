@@ -82,6 +82,7 @@
         lang = {
           nix.enable = true;
           zig.enable = true;
+          python.enable = true;
         };
       };
 

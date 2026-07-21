@@ -2,6 +2,7 @@
   wsl = {
     enable = true;
     defaultUser = "eostendarp";
+    interop.register = true;
   };
 
   nix.settings = {
